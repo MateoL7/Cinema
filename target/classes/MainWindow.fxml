@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" layoutX="165.0" layoutY="24.0" prefHeight="81.0" prefWidth="271.0" text="BIENVENIDO" textFill="WHITE">
+         <font>
+            <Font name="Comic Sans MS Bold" size="38.0" />
+         </font>
+      </Label>
+      <Button fx:id="registerBtt" layoutX="37.0" layoutY="348.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: blue;" text="Registrar" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteBtt" layoutX="172.0" layoutY="348.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: red;" text="Eliminar" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="bindBtt" layoutX="308.0" layoutY="348.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: green;" text="Vincular" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="searchBtt" layoutX="443.0" layoutY="348.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: purple;" text="Buscador" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="moviesBtt" layoutX="443.0" layoutY="181.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: Grey;" text="Películas" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="20.0" />
+         </font>
+      </Button>
+      <TextArea fx:id="infoArea" layoutX="37.0" layoutY="111.0" prefHeight="200.0" prefWidth="399.0" style="-fx-background-color: black;" />
+   </children>
+</Pane>

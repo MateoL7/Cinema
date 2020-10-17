@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="actorTxt" layoutX="115.0" layoutY="175.0" promptText="ID ACTOR" />
+      <TextField fx:id="movieTxt" layoutX="336.0" layoutY="175.0" promptText="ID PELÍCULA" />
+      <Button fx:id="bindActionBtt" layoutX="264.0" layoutY="221.0" mnemonicParsing="false" style="-fx-background-color: Grey;" text="Vincular" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="homeBtt" layoutX="272.0" layoutY="276.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Inicio" textFill="#9c9c9c">
+         <font>
+            <Font name="Impact" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
