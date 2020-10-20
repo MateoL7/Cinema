@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,22 +15,27 @@ public class DeleteWindow extends Stage {
     private DeleteController dc;
     private Button homeBtt;
     private Button deleteActionBtt;
-    private ChoiceBox optionsBox;
+    private ComboBox optionsBox;
+    private ComboBox comboBox;
 
     public DeleteWindow(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("DeleteWindow.fxml"));
             Parent root = loader.load();
 
-            optionsBox = (ChoiceBox) loader.getNamespace().get("optionsBox");
+            optionsBox = (ComboBox) loader.getNamespace().get("optionsBox");
             homeBtt = (Button) loader.getNamespace().get("homeBtt");
             deleteActionBtt = (Button) loader.getNamespace().get("deleteActionBtt");
+            comboBox = (ComboBox) loader.getNamespace().get("comboBox");
+
+            comboBox.setVisible(false);
 
             optionsBox.getItems().add("Eliminar Género");
             optionsBox.getItems().add("Eliminar Película");
             optionsBox.getItems().add("Eliminar Actor");
 
             Scene scene = new Scene(root);
+            this.setTitle("Eliminar");
             this.setScene(scene);
 
             dc = new DeleteController(this);
@@ -52,7 +57,11 @@ public class DeleteWindow extends Stage {
         return deleteActionBtt;
     }
 
-    public ChoiceBox getOptionsBox() {
+    public ComboBox getOptionsBox() {
         return optionsBox;
+    }
+
+    public ComboBox getComboBox() {
+        return comboBox;
     }
 }

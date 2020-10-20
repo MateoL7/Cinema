@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -17,6 +18,8 @@ public class BindWindow extends Stage {
     private TextField movieTxt;
     private Button bindActionBtt;
     private Button homeBtt;
+    private ComboBox listActors;
+    private ComboBox listMovies;
 
     private BindController bc;
 
@@ -29,8 +32,17 @@ public class BindWindow extends Stage {
             movieTxt = (TextField) loader.getNamespace().get("movieTxt");
             bindActionBtt = (Button) loader.getNamespace().get("bindActionBtt");
             homeBtt = (Button) loader.getNamespace().get("homeBtt");
+            listActors = (ComboBox) loader.getNamespace().get("listActors");
+            listMovies = (ComboBox) loader.getNamespace().get("listMovies");
+
+            listActors.setPromptText("Actores");
+            listMovies.setPromptText("Películas");
+
+            actorTxt.setEditable(false);
+            movieTxt.setEditable(false);
 
             Scene scene = new Scene(root);
+            this.setTitle("Vincular");
             this.setScene(scene);
 
             bc = new BindController(this);
@@ -58,5 +70,13 @@ public class BindWindow extends Stage {
 
     public BindController getBc() {
         return bc;
+    }
+
+    public ComboBox getListActors() {
+        return listActors;
+    }
+
+    public ComboBox getListMovies() {
+        return listMovies;
     }
 }

@@ -55,6 +55,9 @@ public class MainController {
                     view.close();
                 }
         );
+        view.setOnCloseRequest((e)->{
+            connection.close();
+        });
     }
     public void getAllInfo(){
         ArrayList<Pelicula> movies = connection.getAllMovies();

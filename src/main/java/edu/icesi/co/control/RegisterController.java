@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.StageStyle;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 
@@ -38,7 +39,14 @@ public class RegisterController {
                     mw.show();
                 }
         );
+        view.setOnCloseRequest((e)->{
+            connection.close();
+        });
+        view.getOptionsBox().setOnAction((e) ->{
+            fill(view.getOptionsBox().getValue()+"");
+        });
     }
+
 
     public void register() {
         try {
@@ -52,14 +60,9 @@ public class RegisterController {
                     msg = "El nuevo género ha sido añadido correctamente";
                     break;
                 case "Película":
-                    int gender = -1;
-
-                    TextInputDialog genderT = new TextInputDialog();
-                    genderT.setHeaderText("¿A cuál género pertenece?");
-                    Optional<String> g1 = genderT.showAndWait();
-                    if (g1.isPresent()) {
-                        gender = Integer.parseInt(g1.get());
-                    }
+                    String genre = (String) view.getGenresBox().getValue();
+                    String[] parts = genre.split("ID: ");
+                    int gender = Integer.parseInt(parts[1]);
                     Pelicula p = new Pelicula(-1, name, gender);
                     connection.insertPelicula(p);
                     msg = "La nueva película ha sido añadida correctamente";
@@ -76,19 +79,26 @@ public class RegisterController {
             alert.setHeaderText(msg);
             alert.showAndWait();
             view.getNameTxt().setText("");
-        } catch (NumberFormatException n) {
+        }
+        catch (NullPointerException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initStyle(StageStyle.UTILITY);
             alert.setTitle("Information");
-            alert.setHeaderText("FALTA GÉNERO");
-            alert.showAndWait();
-        }catch (NullPointerException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initStyle(StageStyle.UTILITY);
-            alert.setTitle("Information");
-            alert.setHeaderText("ELIGE LO QUE QUIERES AGREGAR");
+            alert.setHeaderText("Por favor llena toda la información");
             alert.showAndWait();
         }
     }
+    public void fill(String s) {
+        if(s.equalsIgnoreCase("Película")){
+            view.getGenresBox().setVisible(true);
+            ArrayList<Genero> gens = connection.getAllGenres();
+            for (int i = 0; i < gens.size(); i++) {
+                view.getGenresBox().getItems().add(gens.get(i).getTipo() + "-> ID: " + gens.get(i).getId());
+            }
+        }
+        else{
+            view.getGenresBox().setVisible(false);
 
+        }
+    }
 }

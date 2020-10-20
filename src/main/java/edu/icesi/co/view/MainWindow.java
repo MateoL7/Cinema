@@ -33,6 +33,7 @@ public class MainWindow extends Stage {
             infoArea = (TextArea) loader.getNamespace().get("infoArea");
 
             Scene scene = new Scene(root);
+            this.setTitle("Cinema");
             this.setScene(scene);
 
             mc = new MainController(this);

@@ -4,6 +4,7 @@ import edu.icesi.co.model.Actor;
 import edu.icesi.co.model.Genero;
 import edu.icesi.co.model.Pelicula;
 
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -84,9 +85,10 @@ public class SQLConnection {
                     .replace("$PID", ""+pID)
                     .replace("$AID", ""+aID);
             statement.execute(sql);
-        } catch (SQLException throwables) {
+        }catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
     }
     public ArrayList<Actor> getAllActors(){
         ArrayList<Actor> actors = new ArrayList<>();
@@ -126,7 +128,7 @@ public class SQLConnection {
             ResultSet resultSet = statement.executeQuery("SELECT * from generos");
             while(resultSet.next()) {
                 int id = resultSet.getInt(resultSet.findColumn("id"));
-                String nombre = resultSet.getString(resultSet.findColumn("nombre"));
+                String nombre = resultSet.getString(resultSet.findColumn("tipo"));
                 genres.add(new Genero(id,nombre));
             }
         } catch (SQLException throwables){
@@ -224,10 +226,10 @@ public class SQLConnection {
     public void deleteActor(int aID){
         try{
             Statement statement = connection.createStatement();
-            String sqlPA = ("DELETE FROM películas_actores WHERE películas_actores.actorID = $MID")
-                    .replace("$MID", ""+aID);
-            String sqlA = ("DELETE FROM actores WHERE actor.id = $MID")
-                    .replace("$MID", ""+aID);
+            String sqlPA = ("DELETE FROM películas_actores WHERE películas_actores.actorID = $AID")
+                    .replace("$AID", ""+aID);
+            String sqlA = ("DELETE FROM actores WHERE actores.id = $AID")
+                    .replace("$AID", ""+aID);
             statement.execute(sqlPA);
             statement.execute(sqlA);
         } catch (SQLException throwables){
