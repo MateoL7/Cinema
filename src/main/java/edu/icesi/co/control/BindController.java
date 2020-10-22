@@ -7,6 +7,7 @@ import edu.icesi.co.view.BindWindow;
 import edu.icesi.co.view.MainWindow;
 import javafx.scene.control.Alert;
 import javafx.stage.StageStyle;
+
 import java.util.ArrayList;
 
 
@@ -39,23 +40,23 @@ public class BindController {
         );
         fillLists();
         view.getListActors().setOnAction(
-                (e)-> {
+                (e) -> {
                     updateActors();
                 });
         view.getListMovies().setOnAction(
-                (e)-> {
+                (e) -> {
                     updateMovies();
                 });
-        view.setOnCloseRequest((e)->{
+        view.setOnCloseRequest((e) -> {
             connection.close();
         });
     }
 
-    public void bind(){
+    public void bind() {
         try {
             int aID = Integer.parseInt(view.getActorTxt().getText());
             int pID = Integer.parseInt(view.getMovieTxt().getText());
-            connection.linkActorMovie(pID,aID);
+            connection.linkActorMovie(pID, aID);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.initStyle(StageStyle.UTILITY);
             alert.setTitle("Information");
@@ -63,6 +64,9 @@ public class BindController {
             alert.showAndWait();
             view.getActorTxt().setText("");
             view.getMovieTxt().setText("");
+
+            view.getListActors().setValue("Actores");
+            view.getListMovies().setValue("Películas");
         } catch (NumberFormatException n) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initStyle(StageStyle.UTILITY);
@@ -71,25 +75,32 @@ public class BindController {
             alert.showAndWait();
         }
     }
-    public void fillLists(){
+
+    public void fillLists() {
         actors = connection.getAllActors();
         movies = connection.getAllMovies();
-        for(int i = 0; i < actors.size(); i++){
-            view.getListActors().getItems().add(""+actors.get(i).getNombre()+" -> ID: "+ actors.get(i).getId());
+        for (int i = 0; i < actors.size(); i++) {
+            view.getListActors().getItems().add("" + actors.get(i).getNombre() + " -> ID: " + actors.get(i).getId());
         }
-        for(int i = 0; i < movies.size(); i++){
-            view.getListMovies().getItems().add(""+movies.get(i).getNombre()+" -> ID: "+ movies.get(i).getId());
+        for (int i = 0; i < movies.size(); i++) {
+            view.getListMovies().getItems().add("" + movies.get(i).getNombre() + " -> ID: " + movies.get(i).getId());
         }
     }
-    public void updateActors(){
-        String choiceA = view.getListActors().getValue()+"";
-        String[] partsA = choiceA.split("ID: ");
-        view.getActorTxt().setText(partsA[1]);
+
+    public void updateActors() {
+        String choiceA = view.getListActors().getValue() + "";
+        if (!choiceA.equalsIgnoreCase("Actores")) {
+            String[] partsA = choiceA.split("ID: ");
+            view.getActorTxt().setText(partsA[1]);
+        }
     }
-    public void updateMovies(){
-        String choiceB = view.getListMovies().getValue()+"";
-        String[] partsB = choiceB.split("ID: ");
-        view.getMovieTxt().setText(partsB[1]);
+
+    public void updateMovies() {
+        String choiceB = view.getListMovies().getValue() + "";
+        if (!choiceB.equalsIgnoreCase("Películas")) {
+            String[] partsB = choiceB.split("ID: ");
+            view.getMovieTxt().setText(partsB[1]);
+        }
     }
 
 }

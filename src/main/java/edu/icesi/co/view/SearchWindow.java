@@ -33,6 +33,8 @@ public class SearchWindow extends Stage {
             infoList = (ListView) loader.getNamespace().get("infoList");
             comboBox = (ComboBox) loader.getNamespace().get("comboBox");
 
+            optionsBox.setPromptText("Elige lo que quieres buscar");
+            comboBox.setVisible(false);
 
             optionsBox.getItems().add("Películas por género");
             optionsBox.getItems().add("Películas de un actor");

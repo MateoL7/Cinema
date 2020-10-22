@@ -103,6 +103,7 @@ public class SearchController {
 
     public void fillLists(String option) {
         view.getComboBox().getItems().clear();
+        view.getComboBox().setPromptText("Opciones");
         view.getComboBox().setVisible(true);
         switch (option) {
             case "Películas por género":
