@@ -98,6 +98,12 @@ public class SearchController {
             alert.setTitle("Information");
             alert.setHeaderText("Elige lo que quieres buscar");
             alert.showAndWait();
+        }catch (ArrayIndexOutOfBoundsException x) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initStyle(StageStyle.UTILITY);
+            alert.setTitle("Information");
+            alert.setHeaderText("Elige de cuál quieres buscar");
+            alert.showAndWait();
         }
     }
 
